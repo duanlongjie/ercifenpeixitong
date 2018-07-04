@@ -66,12 +66,4 @@ public class LoginController {
     }
 
 
-    //教师登陆
-    @RequestMapping("teacherLogin")
-    public String teacherLogin(){
-        return "/teacher/teacher_login";
-    }
-    public String teacherLoginHandler(String username,String password){
-        return "/teacher/teacherDetil";
-    }
 }
