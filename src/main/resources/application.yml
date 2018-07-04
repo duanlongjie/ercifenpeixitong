@@ -13,8 +13,8 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
-    cache: false  # ¹Ø±Õ»º´æ ¼°Ê±Ë¢ĞÂ
-  mvc:  #  ¾²Ì¬×ÊÔ´ÎÄ¼ş
+    cache: false
+  mvc:
     static-path-pattern: /static/**
   jpa:
     show-sql: true
@@ -22,9 +22,9 @@ spring:
       ddl-auto: update
 server:
   port: 80
-    # ÈÈ²¿ÊğÅäÖÃ Ïà¹Ø
+    # ï¿½È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #  devtools:
 #    restart:
-#      enabled: true  #ÈÈ²¿Êğ ÉúĞ§
-#      additional-paths: src/main/java  #ÈÈ²¿Êğ¼àÌıµÄÄ¿Â¼
-#      exclude: static/** ,templates/**  # ÅÅ³ıÕâĞ© Ä¿Â¼ÎÄ¼ş ²»ĞèÒª restart
+#      enabled: true  #ï¿½È²ï¿½ï¿½ï¿½ ï¿½ï¿½Ğ§
+#      additional-paths: src/main/java  #ï¿½È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
+#      exclude: static/** ,templates/**  # ï¿½Å³ï¿½ï¿½ï¿½Ğ© Ä¿Â¼ï¿½Ä¼ï¿½ ï¿½ï¿½ï¿½ï¿½Òª restart

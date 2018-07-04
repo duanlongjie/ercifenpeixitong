@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.persistence.criteria.CriteriaBuilder;
 
-public interface RoleDao extends JpaRepository<Role,CriteriaBuilder.In> {
+public interface RoleDao extends JpaRepository<Role,Integer> {
 }

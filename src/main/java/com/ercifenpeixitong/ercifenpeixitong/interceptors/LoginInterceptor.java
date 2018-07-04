@@ -5,12 +5,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor implements HandlerInterceptor {
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("interceptor interceptor interceptor interceptor");
-        return true;
+        System.out.println("url:"+request.getRequestURL());
+        System.out.println("urI:"+request.getRequestURI());
+        HttpSession session = request.getSession();
+        Object token = session.getAttribute("token");
+        if(token instanceof Integer && token!=null){
+            return true;
+        }
+        //身份验证失败
+        else {
+            response.sendRedirect("login");
+//            request.getRequestDispatcher("login").forward(request,response);
+        }
+        return false;
     }
 
     @Override

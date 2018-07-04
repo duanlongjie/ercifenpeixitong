@@ -27,7 +27,8 @@ public class ExceptionHander {
         ModelAndView mv =new ModelAndView();
         mv.addObject("exception",e);
         mv.addObject("url",request.getRequestURL());
-
+        System.out.println(e);
+        System.out.println(request.getRequestURL());
         mv.setViewName("error");
         return mv;
 

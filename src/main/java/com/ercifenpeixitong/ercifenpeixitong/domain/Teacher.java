@@ -15,6 +15,9 @@ public class Teacher {
     private String password;
     private String name;
     private Integer isDelete;
+    /**申报状态 0:申报成功 1:申报失败   2:申报中*/
+    private Integer declareStatus;
+
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Declaration> declarations =new ArrayList<>();
@@ -26,8 +29,17 @@ public class Teacher {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", isDelete=" + isDelete +
+                ", declareStatus=" + declareStatus +
                 ", declarations=" + declarations +
                 '}';
+    }
+
+    public Integer getDeclareStatus() {
+        return declareStatus;
+    }
+
+    public void setDeclareStatus(Integer declareStatus) {
+        this.declareStatus = declareStatus;
     }
 
     public String getGongHao() {

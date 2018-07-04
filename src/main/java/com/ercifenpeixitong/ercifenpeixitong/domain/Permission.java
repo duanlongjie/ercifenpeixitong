@@ -9,8 +9,12 @@ public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    /**权限名称*/
     private String name;
+    /**权限地址*/
     private String href;
+    /**图标*/
+    private String icon;
 
     @Override
     public String toString() {
@@ -19,6 +23,14 @@ public class Permission {
                 ", name='" + name + '\'' +
                 ", href='" + href + '\'' +
                 '}';
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public Integer getId() {

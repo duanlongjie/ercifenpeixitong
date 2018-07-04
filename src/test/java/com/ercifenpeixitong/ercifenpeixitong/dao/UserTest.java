@@ -1,6 +1,7 @@
 package com.ercifenpeixitong.ercifenpeixitong.dao;
 
 import com.ercifenpeixitong.ercifenpeixitong.domain.Department;
+import com.ercifenpeixitong.ercifenpeixitong.domain.Permission;
 import com.ercifenpeixitong.ercifenpeixitong.domain.Role;
 import com.ercifenpeixitong.ercifenpeixitong.domain.User;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -50,5 +52,25 @@ public class UserTest {
                 userDao.findById(1);
         User user = byId.get();
         System.out.println(user.getDepartment());
+    }
+
+    @Test
+    public void find02(){
+        Optional<User> op = userDao.findById(3);
+        User user = op.get();
+        List<Role> roles =
+                user.getRoles();
+        System.out.println(roles);
+        for (Role role:roles){
+            List<Permission> permissions = role.getPermissions();
+            for(Permission p:permissions){
+                String href = p.getHref();
+            }
+        }
+    }
+    @Test
+    public void find03(){
+        User admin = userDao.findAllByUsernameAndPassword("admin", "123");
+        System.out.println(admin);
     }
 }
