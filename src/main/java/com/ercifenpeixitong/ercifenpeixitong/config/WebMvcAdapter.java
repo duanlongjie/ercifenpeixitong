@@ -24,6 +24,16 @@ public class WebMvcAdapter implements WebMvcConfigurer {
         excludePaths.add("/admin/login");
         excludePaths.add("/loginHandler");
         excludePaths.add("loginHandler");
+        excludePaths.add("/teacher/teacher_login");
+        excludePaths.add("/teacherLogin");
+        excludePaths.add("/teacherLoginHandler");
+        excludePaths.add("/getDecs");
+        excludePaths.add("loginOut");
+        excludePaths.add("/formHandler");
+        excludePaths.add("/admin/formHandler2");
+        excludePaths.add("/admin/personal");
+        excludePaths.add("/pass");
+        excludePaths.add("/teacherloginOut");
         excludePaths.add("/static/**");
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
                                                        .excludePathPatterns(excludePaths);

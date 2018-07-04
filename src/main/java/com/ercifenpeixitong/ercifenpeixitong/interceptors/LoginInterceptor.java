@@ -6,6 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -15,7 +16,13 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("urI:"+request.getRequestURI());
         HttpSession session = request.getSession();
         Object token = session.getAttribute("token");
+        Object permissionHrefs = session.getAttribute("permissionHrefs");
         if(token instanceof Integer && token!=null){
+//        if(permissionHrefs instanceof ArrayList){
+//            if(((ArrayList) permissionHrefs).contains(request.getRequestURL())||((ArrayList) permissionHrefs).contains(request.getRequestURI())){
+//                return true;
+//            }
+//        }
             return true;
         }
         //身份验证失败

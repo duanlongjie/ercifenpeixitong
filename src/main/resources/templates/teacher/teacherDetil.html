@@ -8,10 +8,80 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/roboto.css">
     <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css">
     <title>老师个人主页</title>
-    <style></style>
-
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body class="cm-login">
+  <body>
+  <div class="navbar navbar-default" role="navigation">
+    　<div class="navbar-header">
+            <span class="navbar-brand" th:text="${teacher.name}+' 的个人主页'"></span>
+    　</div>
+    <ul class="nav navbar-nav">
+      <!--<li><a th:href="@{admin/personal(gongHao=${teacher.gongHao})}">个人信息</a></li>-->
+      <li><a class="btn" data-toggle="modal" data-target=".personal">通过项目</a></li>
+      <li><a href="getDecs">申报项目</a></li>
+      <li><a  class="btn" data-toggle="modal" data-target=".bs-example-modal-sm">申报状态</a></li>
+      <li class="active"><a href="teacherloginOut">退出登陆</a></li>
+    </ul>
+  </div>
 
+
+  <div class="modal fade personal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">通过项目</h4>
+        </div>
+        <div class="modal-body">
+          <span th:if="${teacher.declareStatus}==2" th:text="项目审核中"></span>
+          <p  th:if="${teacher.declareStatus}==1" th:text="审核失败"></p>
+          <p  th:if="${teacher.declareStatus}==3" th:text="尚无申报"></p>
+          <ul class="nav nav-pills nav-stacked" style="max-width: 260px;"   th:each="d:${declarations}">
+            <li class="success">
+              <a th:text="${d.name}+'      分值:'+${d.score}"></a>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">申报状态</h4>
+        </div>
+        <div class="modal-body">
+          <p  th:if="${teacher.declareStatus}==0" th:text="审核成功"></p>
+          <p  th:if="${teacher.declareStatus}==1" th:text="审核失败"></p>
+          <p  th:if="${teacher.declareStatus}==2" th:text="审核中"></p>
+          <p  th:if="${teacher.declareStatus}==3" th:text="尚无申报"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
   </body>
 </html>

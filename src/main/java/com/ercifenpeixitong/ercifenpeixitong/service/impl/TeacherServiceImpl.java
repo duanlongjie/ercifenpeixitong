@@ -62,4 +62,16 @@ public class TeacherServiceImpl implements TeacherService {
         }else resultInfo.setResultCode(ResultCode.RESULT_CODE_FAIL);
         return resultInfo;
     }
+
+    @Override
+    public ResultInfo<Teacher> findByGongHaoAndPassword(String gongHao, String password) {
+        ResultInfo<Teacher> resultInfo =new ResultInfo<>();
+        if(""!=gongHao && ""!=password){
+            Teacher teacher = teacherDao.findByGongHaoAndPassword(gongHao, password);
+            resultInfo.setResultCode(ResultCode.RESULT_CODE_SUCCESS);
+            resultInfo.setResultObj(teacher);
+        }
+        resultInfo.setResultCode(ResultCode.RESULT_CODE_FAIL);
+        return resultInfo;
+    }
 }

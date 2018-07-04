@@ -5,11 +5,14 @@ import com.ercifenpeixitong.ercifenpeixitong.dao.DeclarationDao;
 import com.ercifenpeixitong.ercifenpeixitong.domain.Declaration;
 import com.ercifenpeixitong.ercifenpeixitong.domain.ResultInfo;
 import com.ercifenpeixitong.ercifenpeixitong.service.DeclarationService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-
+@Service
+@Transactional
 public class DeclarationServiceImpl implements DeclarationService {
     @Resource
     private DeclarationDao declarationDao;

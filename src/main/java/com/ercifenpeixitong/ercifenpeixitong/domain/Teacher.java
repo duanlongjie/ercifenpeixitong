@@ -15,7 +15,7 @@ public class Teacher {
     private String password;
     private String name;
     private Integer isDelete;
-    /**申报状态 0:申报成功 1:申报失败   2:申报中*/
+    /**申报状态 0:申报成功 1:申报失败  2:申报中 3:尚无申报*/
     private Integer declareStatus;
 
 

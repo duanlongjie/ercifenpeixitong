@@ -31,4 +31,6 @@ public interface TeacherService {
      */
     ResultInfo<Teacher> deleteTeacherByGongHao(String gongHao);
 
+    ResultInfo<Teacher> findByGongHaoAndPassword(String gongHao,String password);
+
 }

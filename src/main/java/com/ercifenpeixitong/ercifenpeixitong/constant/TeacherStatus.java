@@ -14,5 +14,7 @@ public class TeacherStatus {
     public static Integer  DECLARESTATUSFAIL=1;
     /**申报状态 :审核中*/
     public static Integer  DECLARESTATUSUNKOWM=2;
+    /**申报状态 :尚无申报*/
+    public static Integer  DECLARESTATUSNONE=3;
 
 }
