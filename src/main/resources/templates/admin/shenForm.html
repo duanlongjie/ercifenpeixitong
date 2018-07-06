@@ -22,37 +22,69 @@
     　<div class="navbar-header">
     <span class="navbar-brand" th:text="'申报人:'+${teacher.name}"></span>
     　</div>
+    <div class="navbar-header">
+      <span class="navbar-brand" th:text="'工号:'+${teacher.gongHao}"></span>
+      　</div>
   </div>
+  <form role="form">
+<table class="table table-hover table-bordered" >
+  <tr class="success">
+    <td>申报项目</td>
+      <td>总分</td>
+    <td>所属类别</td>
+    <td>选择</td>
+    <td>评分(请根据实际情况给分!)</td>
+  </tr>
+    <tr th:each="d:${declarations}">
+      <td th:text="${d.name}"></td>
+        <td th:text="${d.score}"></td>
+      <td th:if="${d.remark} eq 0" th:text="教学"></td>
+      <td th:if="${d.remark} eq 1" th:text="科研"></td>
+      <td>
+        <div class="checkbox"><label><input class="in" th:name="${d.name}" type="checkbox" th:value="${d.id}"></label></div>
+      </td>
+      <td>
+        <input class="in2" type="text" th:name="${d.name}">
+      </td>
+    </tr>
 
-    <form role="form" method="post">
-      <ul class="list-group" th:each="d:${declarations}">
-        <div>
-          <li class="list-group-item col-xs-8" th:text="${d.name}"  >
+</table>
+    <input class="btn btn-success" id="b" type="button"  value="批准">
+    <a href="/pass" class="btn btn-danger"> 不批准</a>
 
-          </li>
-          <div class="checkbox"><label><input class="in" th:name="${d.name}" type="checkbox" th:value="${d.id}"></label></div>
-        </div>
-      </ul>
-    </form>
-    <input id="b" type="button"  value="批准">
-    <a href="/pass"> 不批准</a>
+  </form>
+
+
     <script src="../../static/js/jquery-2.1.3.min.js"></script>
     <script type="text/javascript">
         $(function () {
            var ids=new Array();
+           var names=new Array();
+           var values=new Array();
+            var ns=$(".in2")
+
+
           $("#b").click(function () {
               var lis=$(".in")
+              // for(var j=0;j<ns.length;j++){
+              //     var name=ns[j].name+":"+ns[j].value;
+              //     names.push(name)
+              // }
               for(var i=0;i<lis.length;i++){
                   if(lis[i].checked){
                   ids.push(lis[i].value)
+                      var name=ns[i].name+":"+ns[i].value;
+                      names.push(name)
                   }
+
               }
 
               $.ajax({
                   url: "/formHandler2",
                   type: "post",
                   data: {
-                      "ids": ids
+                      "ids": ids,
+                      "names":names
                   },
                   traditional: true,
                   success: function(data) {

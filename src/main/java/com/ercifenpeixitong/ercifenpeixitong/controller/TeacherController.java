@@ -63,9 +63,11 @@ public class TeacherController {
             String roleName = r.getRoleName();
             roleNames=roleNames+"-"+roleName;
         }
+        System.out.println("----------------------roleNames:"+roleNames);
         model.addAttribute("user",user);
         model.addAttribute("roleNames",roleNames);
         model.addAttribute("permissionList",permissionList2);
+        model.addAttribute("info","");
         return "admin/teacherList";
     }
 
@@ -82,14 +84,30 @@ public class TeacherController {
     }
 
     @RequestMapping("personal")
-    public String personal(String gongHao,Model model){
+    public String personal(String gongHao,Model model,Integer id){
+        ResultInfo<User> resultInfo1 = userServiece.findById(id);
+        User user = resultInfo1.getResultObj();
+        System.out.println("_________________________________________");
+        System.out.println(user);
+        System.out.println("_________________________________________");
         ResultInfo<Teacher> resultInfo = teacherService.findById(gongHao);
         Teacher teacher = resultInfo.getResultObj();
         List<Declaration> declarations = teacher.getDeclarations();
         model.addAttribute("declarations",declarations);
         model.addAttribute("teacher",teacher);
+        model.addAttribute("user",user);
         return "teacher/overForm";
     }
 
+
+    @RequestMapping("detil")
+    public String detil(String gongHao,Model model){
+        ResultInfo<Teacher> resultInfo = teacherService.findById(gongHao);
+        Teacher teacher = resultInfo.getResultObj();
+        List<Declaration> declarations = teacher.getDeclarations();
+        model.addAttribute("declarations",declarations);
+        model.addAttribute("teacher",teacher);
+        return "teacher/teacherInfo";
+    }
 
 }

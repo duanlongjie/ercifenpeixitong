@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="../../static/css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/font-awesome.min.css">
+    <title>老师个人主页</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+  <!--<ul class="nav nav-pills nav-stacked">-->
+    <!--<li class="nav-divider"  th:text="'姓名:'+${teacher.name}"> </li>-->
+    <!--<li class="disabled"  th:text="'工号:'+${teacher.gongHao}"> </li>-->
+  <!--</ul>-->
+
+
+  <div class="navbar cm-navbar-success" role="navigation">
+    　<div class="navbar-header">
+    <span class="navbar-brand" th:text="'姓名:'+${teacher.name} "></span>
+    　</div>
+    　<div class="navbar-header">
+    <span class="navbar-brand" th:text=" '工号:'+${teacher.gongHao}"></span>
+    　</div>
+
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item" th:text="'工号:         '+${teacher.gongHao}"></li>
+    <li class="list-group-item" th:text="'姓名:'+${teacher.name}"></li>
+    <li class="list-group-item"  th:text="'qq:'+${teacher.qq}"></li>
+    <li class="list-group-item" th:text="'岗位:'+${teacher.gangWei}"></li>
+    <li class="list-group-item" th:text="'行政部门:'+${teacher.xingZhen}"></li>
+    <li class="list-group-item" th:text="'职称:'+${teacher.zhiCheng}"></li>
+    <li class="list-group-item" th:text="'额定完成教学:'+${teacher.edJiao}"></li>
+    <li th:if="${teacher.shijiJiao} gt 0" class="list-group-item" th:text="'实际完成教学:'+${teacher.shijiJiao}+'分----价值:'+${teacher.shijiJiao} *10"></li>
+    <li th:if="${teacher.shijiJiao} eq 0" class="list-group-item" th:text="'实际完成教学: 0'"></li>
+    <li   class="list-group-item" th:text="'额定完成科研:'+${teacher.edKe}"></li>
+    <li th:if="${teacher.shijiKe} gt 0" class="list-group-item" th:text="'实际完成科研:'+${teacher.shijiKe}"></li>
+    <li th:if="${teacher.shijiKe} eq 0" class="list-group-item" th:text="'实际完成科研:0' "></li>
+  </ul>
+  <!--<ul class="list-group">-->
+    <!--<li class="list-group-item" th:text="'工号:         '+${teacher.gongHao}"></li>-->
+    <!--<li class="list-group-item" th:text="'姓名:'+${teacher.name}"></li>-->
+    <!--<li class="list-group-item"  th:text="'qq:'+${teacher.qq}"></li>-->
+    <!--<li class="list-group-item" th:text="'岗位:'+${teacher.gangWei}"></li>-->
+    <!--<li class="list-group-item" th:text="'行政部门:'+${teacher.xingZhen}"></li>-->
+    <!--<li class="list-group-item" th:text="'职称:'+${teacher.zhiCheng}"></li>-->
+    <!--<li class="list-group-item" th:text="'额定完成教学:'+${teacher.edJiao}"></li>-->
+    <!--<li th:if="${teacher.shijiJiao} gt 0" class="list-group-item" th:text="'实际完成教学:'+${teacher.shijiJiao}"></li>-->
+    <!--<li th:if="${teacher.shijiJiao} eq 0" class="list-group-item" th:text="'实际完成教学: 0'"></li>-->
+    <!--<li   class="list-group-item" th:text="'额定完成科研:'+${teacher.edKe}"></li>-->
+    <!--<li th:if="${teacher.shijiKe} gt 0" class="list-group-item" th:text="'实际完成科研:'+${teacher.shijiKe}"></li>-->
+    <!--<li th:if="${teacher.shijiKe} eq 0" class="list-group-item" th:text="'实际完成科研:0' "></li>-->
+  <!--</ul>-->
+  <script type="text/javascript" src="../../static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="../../static/js/bootstrap.js"></script>
+  </body>
+</html>

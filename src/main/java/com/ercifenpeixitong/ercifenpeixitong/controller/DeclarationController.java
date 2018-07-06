@@ -65,13 +65,11 @@ public class DeclarationController {
 
     @ResponseBody
     @RequestMapping("formHandler2")
-    public void test2(final String[]ids, HttpSession session){
-        System.out.println("+++++++++++++++++++++");
-        for(int i=0;i<ids.length;i++){
-            System.out.println(ids[i]);
-        }
-        System.out.println("+++++++++++++++++++++");
+    public void test2(final String[]ids, HttpSession session,
+                      final String [] names){
         Teacher teacher=null;
+        float sumJiao=0;
+        float sumKeyan=0;
         Object tToken = session.getAttribute("gongHao");
         if(tToken instanceof String && ""!=tToken){
             ResultInfo<Teacher> re = teacherService.findById((String) tToken);
@@ -84,6 +82,22 @@ public class DeclarationController {
         for(int i=0;i<ids.length;i++){
             ResultInfo<Declaration> resultInfo = declarationService.findDecById(ids[i]);
             Declaration declaration = resultInfo.getResultObj();
+            String name = declaration.getName();
+            System.out.println("name:"+name);
+            Standard standard=new Standard();
+            for(String s:names){
+                String[] split = s.split(":");
+                if(split[0].equals(name)){
+                    standard.setStandard(split[1]);
+                    if(declaration.getRemark()==0){
+                        sumJiao+=Float.parseFloat(split[1]);
+                    }else sumKeyan+=Float.parseFloat(split[1]);
+                    declaration.getStandards().add(standard);
+                }
+
+            }
+            teacher.setShijiJiao(sumJiao);
+            teacher.setShijiKe(sumKeyan);
             //添加通过的申报
             teacher.getDeclarations().add(declaration);
         }
@@ -91,8 +105,12 @@ public class DeclarationController {
         teacher.setDeclareStatus(TeacherStatus.DECLARESTATUSSUCCESS);
         teacherService.save(teacher);
     }
+
+
+
     @RequestMapping("pass")
     public String Pass(HttpSession session,Model model){
+        User user=null;
         Teacher teacher=null;
         Object tToken = session.getAttribute("gongHao");
         if(tToken instanceof String && ""!=tToken){
@@ -109,7 +127,7 @@ public class DeclarationController {
         Object token = session.getAttribute("token");
         if(token instanceof Integer){
             ResultInfo<User> resultInfo = userServiece.findById((Integer) token);
-            User user = resultInfo.getResultObj();
+            user = resultInfo.getResultObj();
             if(user!=null){
                 List<Role> roles = user.getRoles();
                 for(Role role:roles){
@@ -135,6 +153,7 @@ public class DeclarationController {
         ResultInfo<List<Teacher>> resultInfo = teacherService.getAllTeachers();
         List<Teacher> teachers = resultInfo.getResultObj();
         model.addAttribute("teachers",teachers);
+        model.addAttribute("user",user);
         return "admin/teacherList";
 
     }

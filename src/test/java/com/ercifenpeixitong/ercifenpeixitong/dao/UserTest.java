@@ -1,9 +1,7 @@
 package com.ercifenpeixitong.ercifenpeixitong.dao;
 
-import com.ercifenpeixitong.ercifenpeixitong.domain.Department;
-import com.ercifenpeixitong.ercifenpeixitong.domain.Permission;
-import com.ercifenpeixitong.ercifenpeixitong.domain.Role;
-import com.ercifenpeixitong.ercifenpeixitong.domain.User;
+import com.ercifenpeixitong.ercifenpeixitong.domain.*;
+import com.ercifenpeixitong.ercifenpeixitong.service.UserServiece;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +16,9 @@ import java.util.Optional;
 public class UserTest {
     @Resource
     private UserDao userDao;
+    @Resource
+    private UserServiece userServiece;
+
     @Test
     public void insertTest(){
         User user =new User();
@@ -70,7 +71,16 @@ public class UserTest {
     }
     @Test
     public void find03(){
-        User admin = userDao.findAllByUsernameAndPassword("admin", "123");
-        System.out.println(admin);
+        ResultInfo<User> resultInfo = userServiece.findById(2);
+        User user1 = resultInfo.getResultObj();
+        ResultInfo<User> resultInfo1 = userServiece.findByUserNameAndPassword(user1.getUsername(), user1.getPassword());
+        User user = resultInfo1.getResultObj();
+        System.out.println(user1.getUsername()+user1.getPassword());
+//        User user = userDao.findAllByUsernameAndPassword("admin", "123");
+        List<Role> roles = user.getRoles();
+        System.out.println(roles.size());
+        for(Role r:roles){
+            System.out.println(r);
+        }
     }
 }

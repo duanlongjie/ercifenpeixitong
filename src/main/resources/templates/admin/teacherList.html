@@ -22,6 +22,13 @@
     </style>
 </head>
 <body class="cm-no-transition cm-1-navbar">
+<!--<div class="navbar navbar-default navbar-fixed-bottom" role="navigation">-->
+    <!--　<div class="navbar-header success">-->
+    <!--　	<a href="#" class="btn btn-success navbar-brand">导出excel</a>-->
+    <!--　</div>-->
+<!--</div>-->
+
+
 <div id="cm-menu">
     <!--<nav class="cm-navbar cm-navbar-primary">-->
         <!--&lt;!&ndash;<div class="cm-flex"><a href="#" class="cm-logo">??</a></div>&ndash;&gt;-->
@@ -122,6 +129,7 @@
                             <tr class="success">
                                 <td>工号</td>
                                 <td>名称</td>
+                                <td>详细信息</td>
                                 <td>申报状态</td>
                             </tr>
                             </thead>
@@ -130,10 +138,14 @@
                                 <td th:text="${t.gongHao}"></td>
                                 <td th:text="${t.name}"></td>
                                 <td>
+                                    <a class="btn btn-success" th:href="@{detil(gongHao=${t.gongHao})}">详情</a>
+                                </td>
+                                <td>
                                     <span th:if="${t.declareStatus==3}" class="btn btn-gray">尚无申报</span>
                                     <span th:if="${t.declareStatus==2}" class="btn btn-danger">申报项目</span>
                                     <span th:if="${t.declareStatus==0}" class="btn btn-success">已经批准</span>
-                                    <!--<a th:if="${t.declareStatus==0}" class="btn btn-success" th:href="@{personal(gongHao=${t.gongHao})}">查看</a>-->
+                                    <!--<a th:href="@{admin}" th:if="${t.declareStatus==0}" class="btn btn-success">查看</a>-->
+                                    <a th:if="${t.declareStatus==0}" class="btn btn-success" th:href="@{personal(gongHao=${t.gongHao},id=${user.id})}">查看申报</a>
                                     <span th:if="${t.declareStatus==1}" class="btn btn-block">pass</span>
                                     <a th:href="@{shen(gongHao=${t.gongHao})}" th:if="${t.declareStatus==2}" class="btn btn-default">审批</a>
                                 </td>
@@ -142,6 +154,18 @@
                         </table>
                            <center><div id="pagination3" class="page fl"></div></center>
                     </div>
+
+                </div>
+                <div class="navbar navbar-default" role="navigation">
+                    　<div class="navbar-header success">
+                    　	<a href="/import" class="btn btn-success navbar-brand">导出excel</a>
+                    　</div>
+                    <div class="navbar-header success">
+                        　	<a href="/gongshi" class="btn btn-info navbar-brand">公示</a>
+                        　</div>
+                    　<div class="navbar-header success">
+                    　<a href="#" class="btn btn-gray navbar-brand" th:if="''!=${info}" th:text="导出成功"></a>
+                    　</div>
                 </div>
             </div>
         </div>

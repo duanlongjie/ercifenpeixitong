@@ -59,6 +59,7 @@ public class LoginController {
     }
     @RequestMapping("home")
     public String home(HttpSession session,Model model){
+
         User user=null;
         List<Permission> permissionList  =new ArrayList<>();
         List<Permission> permissionList2  =new ArrayList<>();
@@ -67,7 +68,9 @@ public class LoginController {
         Object token = session.getAttribute("token");
         if(token instanceof Integer){
             ResultInfo<User> resultInfo = userServiece.findById((Integer) token);
-             user = resultInfo.getResultObj();
+             User user1 = resultInfo.getResultObj();
+            ResultInfo<User> resultInfo1 = userServiece.findByUserNameAndPassword(user1.getUsername(), user1.getPassword());
+            user = resultInfo1.getResultObj();
             if(user!=null){
                 List<Role> roles = user.getRoles();
                 for(Role role:roles){
@@ -90,9 +93,12 @@ public class LoginController {
         }
         List<Role> roles = user.getRoles();
         for(Role r:roles){
-            String roleName = r.getRoleName();
-            roleNames=roleNames+"-"+roleName;
+            if(!roleNames.contains(r.getRoleName())){
+                String roleName = r.getRoleName();
+                roleNames=roleNames+"-"+roleName;
+            }
         }
+        System.out.println("---------------"+roleNames);
         model.addAttribute("user",user);
         model.addAttribute("roleNames",roleNames);
         model.addAttribute("permissionList",permissionList2);

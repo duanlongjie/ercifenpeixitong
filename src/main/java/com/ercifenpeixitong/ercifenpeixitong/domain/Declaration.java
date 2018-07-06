@@ -1,7 +1,14 @@
 package com.ercifenpeixitong.ercifenpeixitong.domain;
 
 
+
+
+
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 申报表
@@ -13,7 +20,17 @@ public class Declaration {
     private String id;
     private String name;
     private float score;
+    /**0:标志教学 1：标志科研*/
+    private Integer remark;
 
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @Cascade(value= org.hibernate.annotations.CascadeType.ALL)
+    /**joinColumns 本表在第三张表的外键
+     * inverseJoinColumns 另外一张表在 第三张表的外键
+     **/
+    @JoinTable(name = "ec_declaration_standards", joinColumns = @JoinColumn(name = "declaration_id"),
+            inverseJoinColumns={@JoinColumn(name="standards_id")})
+    private List<Standard> standards=new ArrayList<>();
 
     @Override
     public String toString() {
@@ -22,6 +39,14 @@ public class Declaration {
                 ", name='" + name + '\'' +
                 ", score=" + score +
                 '}';
+    }
+
+    public Integer getRemark() {
+        return remark;
+    }
+
+    public void setRemark(Integer remark) {
+        this.remark = remark;
     }
 
     public String getId() {
@@ -48,4 +73,11 @@ public class Declaration {
         this.score = score;
     }
 
+    public List<Standard> getStandards() {
+        return standards;
+    }
+
+    public void setStandards(List<Standard> standards) {
+        this.standards = standards;
+    }
 }

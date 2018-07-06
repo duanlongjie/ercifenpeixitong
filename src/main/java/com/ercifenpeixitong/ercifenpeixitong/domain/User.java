@@ -2,7 +2,9 @@ package com.ercifenpeixitong.ercifenpeixitong.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户和角色是多对多关系
@@ -22,6 +24,10 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Role> roles =new ArrayList<>();
+
+    /**一个用户对应多个评分*/
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Standard> standards =new HashSet<>();
 
     @Override
     public String toString() {
