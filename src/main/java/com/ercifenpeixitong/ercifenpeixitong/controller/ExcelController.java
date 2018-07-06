@@ -96,6 +96,7 @@ public class ExcelController {
     public String gongshi(HttpSession session, Model model){
         Optional<Department> optional = departmentDao.findById(1);
         Department department = optional.get();
+        /**修改标志*/
         department.setIsDelete(1);
         departmentDao.save(department);
         User user=null;
@@ -141,7 +142,8 @@ public class ExcelController {
         model.addAttribute("user",user);
         model.addAttribute("roleNames",roleNames);
         model.addAttribute("permissionList",permissionList2);
-        model.addAttribute("info","导出成功!");
+        model.addAttribute("info","");
+        model.addAttribute("info1","公示成功");
         return "admin/teacherList";
     }
 }

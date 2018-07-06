@@ -164,6 +164,9 @@
                         　	<a href="/gongshi" class="btn btn-info navbar-brand">公示</a>
                         　</div>
                     　<div class="navbar-header success">
+                    　<a href="#" class="btn btn-gray navbar-brand" th:if="''!=${info1}" th:text="公示成功"></a>
+                    　</div>
+                    　<div class="navbar-header success">
                     　<a href="#" class="btn btn-gray navbar-brand" th:if="''!=${info}" th:text="导出成功"></a>
                     　</div>
                 </div>

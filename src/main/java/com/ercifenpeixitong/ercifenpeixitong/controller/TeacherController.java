@@ -68,6 +68,7 @@ public class TeacherController {
         model.addAttribute("roleNames",roleNames);
         model.addAttribute("permissionList",permissionList2);
         model.addAttribute("info","");
+        model.addAttribute("info1","");
         return "admin/teacherList";
     }
 

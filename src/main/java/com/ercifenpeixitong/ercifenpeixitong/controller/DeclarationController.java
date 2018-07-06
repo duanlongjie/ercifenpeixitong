@@ -154,6 +154,8 @@ public class DeclarationController {
         List<Teacher> teachers = resultInfo.getResultObj();
         model.addAttribute("teachers",teachers);
         model.addAttribute("user",user);
+        model.addAttribute("info","");
+        model.addAttribute("info1","");
         return "admin/teacherList";
 
     }

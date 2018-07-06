@@ -23,6 +23,8 @@
 
       <li><a  class="btn btn-gray" data-toggle="modal" data-target=".bs-example-modal-sm">申报状态</a></li>
       <li class="success"><a class="btn btn-info" data-toggle="modal" data-target=".personalInfo">个人信息</a></li>
+      <li  th:if="${isDel} eq 1"><a href="findAll" class="btn btn-gray">查看公示</a></li>
+
       <li class="active"><a href="teacherloginOut">退出登陆</a></li>
     </ul>
   </div>
